@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "1df2a4ca-1175-48c7-a6e7-caa3c66288bc",
+		"name": "Teste ServeRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37927169",
+		"_collection_link": "https://ebac11.postman.co/workspace/Estudos-EBAC~690f0667-2222-4c23-8b84-66d1f2f172f6/collection/37927169-1df2a4ca-1175-48c7-a6e7-caa3c66288bc?action=share&source=collection_link&creator=37927169"
+	},
+	"item": [
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Listar Produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validar produto da lista\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Logitech MX Vertical\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validar mensagem de sucesso\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code é 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsdW5vMUBlYmFjLmNvbS5iciIsInBhc3N3b3JkIjoidGVzdGUiLCJpYXQiOjE3MjQ4MDA5OTQsImV4cCI6MTcyNDgwMTU5NH0.no-uzmuoM4AfKpAmoTC7njRs1jrshClM7tDuDW5TY6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Iphone 15\",\r\n  \"preco\": 4000,\r\n  \"descricao\": \"Celular\",\r\n  \"quantidade\": 121\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Produtos por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validar mensagem de sucesso\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Iphone 15\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Logitech MX Vertical\",\r\n  \"preco\": 470,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381,\r\n  \"_id\": \"BeeJh5lz3k6kSIzA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/produtos/qetcID75uhTv8KXF",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos",
+								"qetcID75uhTv8KXF"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Produtos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsdW5vMUBlYmFjLmNvbS5iciIsInBhc3N3b3JkIjoidGVzdGUiLCJpYXQiOjE3MjQ4MDE4ODEsImV4cCI6MTcyNDgwMjQ4MX0.lsst1NjBOfIC_5wsBiMk7iofl-cvRM1FvdlOzgHYkFs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Iphone 16.6\",\r\n  \"preco\": 3500,\r\n  \"descricao\": \"Celular iOS\",\r\n  \"quantidade\": 382\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}produtos/qetcID75uhTv8KXF",
+							"host": [
+								"{{local}}produtos"
+							],
+							"path": [
+								"qetcID75uhTv8KXF"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Produtos - usando token",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Iphone 16.6\",\r\n  \"preco\": 3500,\r\n  \"descricao\": \"Celular iOS\",\r\n  \"quantidade\": 382\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}produtos/qetcID75uhTv8KXF",
+							"host": [
+								"{{local}}produtos"
+							],
+							"path": [
+								"qetcID75uhTv8KXF"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validar mensagem de exclusão\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsdW5vMUBlYmFjLmNvbS5iciIsInBhc3N3b3JkIjoidGVzdGUiLCJpYXQiOjE3MjQ4MDIyNDgsImV4cCI6MTcyNDgwMjg0OH0.seMd7zoQeSVKkzHSxVQowtQ77IKwtP9k0NNIUSXS5Sg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}produtos/gF8jsRqynQutjYb4",
+							"host": [
+								"{{local}}produtos"
+							],
+							"path": [
+								"gF8jsRqynQutjYb4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Criar usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Karla Alcantara\",\r\n  \"email\": \"aluno1@ebac.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar usuário",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login de usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"aluno1@ebac.com.br\",\r\n  \"password\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token de login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resposta = pm.response.json();\r",
+							"\r",
+							"pm.globals.set(\"token\", resposta.authorization);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"aluno1@ebac.com.br\",\r\n  \"password\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}login",
+					"host": [
+						"{{local}}login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
